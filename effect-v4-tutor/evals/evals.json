@@ -1,0 +1,47 @@
+{
+  "skill_name": "effect-v4-tutor",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "We just talked through implementing an Effect wrapper around a Stripe-like SDK with typed errors, Config.redacted, a Layer, and a callback use method. /effect-v4-tutor Please question me and check if I actually understand what we discussed.",
+      "expected_output": "Starts an Effect v4 checkpoint scoped to SDK wrappers/services/layers, says it will ask 3-5 adaptive questions with varied answer formats, asks the first question without revealing the answer, and uses current Effect v4 terminology.",
+      "files": [],
+      "expectations": [
+        "The response infers the scope from the prompt instead of asking the user to choose a topic.",
+        "The response states a 3-5 question adaptive checkpoint format or equivalent.",
+        "The response says it will vary question formats such as free-text, ABCD, multi-select, or code/repair prompts.",
+        "The response asks exactly one first quiz question and waits for the user's answer.",
+        "The question targets Effect v4 SDK wrapper concepts such as typed errors, Config.redacted, Layer, callback use, AbortSignal, or boundary decoding.",
+        "The response does not reveal the answer before the user answers."
+      ]
+    },
+    {
+      "id": 1,
+      "prompt": "I want you to grade my understanding of Effect v4. My current answers are: recoverable domain failures should just throw new Error; I can read process.env inside a service method; JSON.parse is fine if TypeScript knows the type; Context.Tag is the normal way to define services; and I should run Effect.runPromise inside helpers when I need the value. /effect-v4-tutor Please mark what I got wrong, reteach me, and offer a retest.",
+      "expected_output": "Grades the supplied answers, identifies the misconceptions, reteaches the correct Effect v4 mental models, and offers a fresh retest on the weak spots.",
+      "files": [],
+      "expectations": [
+        "The response grades the user's supplied understanding rather than starting with an unrelated quiz.",
+        "The response identifies thrown domain errors as wrong and teaches typed errors such as Schema.TaggedErrorClass or Effect.fail.",
+        "The response identifies direct process.env access in application/domain code as wrong and teaches Config or Config.redacted at the boundary/layer.",
+        "The response identifies JSON.parse trust as wrong and teaches Schema boundary decoding.",
+        "The response identifies Context.Tag as not the preferred local v4 service pattern and teaches Context.Service plus Layer.",
+        "The response identifies deep Effect.runPromise calls as wrong and teaches runtime execution at entry points.",
+        "The response offers a retest or fresh questions on the missed concepts without automatically starting the retest unless explicitly asked."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Can you teach me Effect v4 services and layers like I'm about to implement my first repository service? I especially don't get the R type parameter. After the explanation, quiz me with /effect-v4-tutor style questions.",
+      "expected_output": "Gives a concise teaching explanation of services, layers, and the R type parameter, then starts an adaptive checkpoint with a first question.",
+      "files": [],
+      "expectations": [
+        "The response explains that R represents required services/environment for an Effect.",
+        "The response explains the difference between a service interface/access point and a Layer that provides an implementation.",
+        "The response keeps runtime execution separate from interior service/domain code.",
+        "The response includes a small concrete example or scenario involving a repository service.",
+        "The response starts a quiz/checkpoint after teaching and asks a first question without including its answer."
+      ]
+    }
+  ]
+}
